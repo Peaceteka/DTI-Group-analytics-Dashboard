@@ -11,6 +11,8 @@ import {
   CardMedia,
   Tooltip,
   IconButton,
+  CircularProgress,
+  Paper,
 } from '@mui/material';
 import {
   LineChart,
@@ -19,6 +21,10 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip as RechartsTooltip,
+  BarChart,
+  Bar,
+  PieChart,
+  Pie,
 } from 'recharts';
 import { useTheme } from '@mui/material/styles';
 

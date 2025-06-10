@@ -1,54 +1,38 @@
-# DTI Public Speaking Dashboard System
+<<<<<<< HEAD
+# DTI-Group-analytics-Dashboard
 
-A comprehensive data dashboard system for DTI Public Speaking to track and analyze key business metrics.
+DTI groups is an image consulting company that has enrolled over 3000 students, it has been winning awards and certifications. This dashboard provides comprehensive analytics for the company's performance.
 
 ## Features
 
-- Lead Source Performance Dashboard
-- Course Enrollment & Attendance Tracking
-- Student Feedback & Sentiment Analysis
-- Sales Funnel Analytics
+- Real-time Student Feedback System
+- Tele Marketer Performance Tracking
+- Corporate Sales Monitoring
+- Course Enrollment Analytics
 - Trainer Performance Metrics
-- Demographic Impact Analysis
+- Color-coded Performance Indicators
 
 ## Tech Stack
 
-- Backend: Django/Python
-- Database: PostgreSQL
-- Frontend: React with Chart.js
-- Visualization: Superset
-- API Integration: FastAPI
+- Frontend: React.js with Material-UI
+- API: FastAPI
+- Charts: Recharts
+- State Management: React Hooks
+- Styling: Material-UI
 
 ## Setup Instructions
 
-1. Create a virtual environment:
+1. Install dependencies:
 ```bash
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+npm install
 ```
 
-2. Install dependencies:
+2. Start the development server:
 ```bash
-pip install -r requirements.txt
+npm start
 ```
 
-3. Configure environment variables:
-Create a `.env` file with the following variables:
-```
-DATABASE_URL=postgresql://user:password@localhost:5432/dti_db
-SECRET_KEY=your-secret-key
-SUPASET_URL=http://localhost:8088
-```
-
-4. Run migrations:
-```bash
-python manage.py migrate
-```
-
-5. Start the development server:
-```bash
-python manage.py runserver
-```
+The application will be available at http://localhost:3000
 
 ## Project Structure
 
@@ -60,3 +44,7 @@ dti-dashboard/
 ├── dashboards/       # Superset configurations
 └── scripts/          # Data processing scripts
 ```
+=======
+# DTI-Group-analytics-Dashboard
+DTI groups is an image consulting company that has enrolled over 3000 students, it has been winnnig awards and certfications, This dashbboard is built on superset to give easy analytics for perfomance for the company.
+>>>>>>> a74c0271056af68c6b9cb1174f55237f2c5747c1

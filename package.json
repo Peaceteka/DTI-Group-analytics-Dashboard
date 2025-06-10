@@ -1,0 +1,8 @@
+{
+  "name": "dti-dashboard",
+  "version": "1.0.0",
+  "description": "DTI Public Speaking Dashboard",
+  "scripts": {
+    "build": "cd frontend && npm run build"
+  }
+}

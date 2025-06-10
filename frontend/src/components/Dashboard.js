@@ -74,17 +74,7 @@ const Dashboard = () => {
     return '#F44336'; // Red for below 50%
   };
 
-  useEffect(() => {
-    // Simulate API call for real-time data
-    const interval = setInterval(() => {
-      setStats(prev => ({
-        ...prev,
-        completionRate: Math.floor(Math.random() * 10) + 85,
-      }));
-    }, 3000);
 
-    return () => clearInterval(interval);
-  }, []);
 
   return (
     <Box sx={{ p: 3 }}>

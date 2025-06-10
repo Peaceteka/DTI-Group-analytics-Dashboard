@@ -1,25 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import {
   Card,
   Grid,
   Typography,
   Box,
-  Paper,
-  CircularProgress,
   LinearProgress,
+  CardContent,
+  CardActions,
+  Button,
+  CardMedia,
+  Tooltip,
+  IconButton,
 } from '@mui/material';
 import {
-  BarChart,
-  Bar,
+  LineChart,
+  Line,
   XAxis,
   YAxis,
   CartesianGrid,
-  Tooltip,
-  Legend,
-  LineChart,
-  Line,
-  PieChart,
-  Pie,
+  Tooltip as RechartsTooltip,
 } from 'recharts';
 import { useTheme } from '@mui/material/styles';
 

@@ -33,18 +33,6 @@ const theme = createTheme({
       fontWeight: 500,
     },
   },
-  components: {
-    MuiCard: {
-      styleOverrides: {
-        root: {
-          borderRadius: 12,
-          boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
-          transition: 'transform 0.2s ease-in-out',
-          '&:hover': {
-            transform: 'translateY(-5px)',
-          },
-        },
-      },
     },
   },
 });
@@ -53,14 +41,18 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <div className="app">
-        <header className="app-header">
-          <h1>DTI Public Speaking Dashboard</h1>
-        </header>
-        <main className="dashboard-main">
+      <Box sx={{ flexGrow: 1 }}>
+        <AppBar position="static" color="primary">
+          <Toolbar>
+            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+              DTI Public Speaking Dashboard
+            </Typography>
+          </Toolbar>
+        </AppBar>
+        <Box sx={{ mt: 8 }}>
           <Dashboard />
-        </main>
-      </div>
+        </Box>
+      </Box>
     </ThemeProvider>
   );
 }

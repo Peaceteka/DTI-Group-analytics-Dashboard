@@ -25,49 +25,47 @@ import { useTheme } from '@mui/material/styles';
 
 const Dashboard = () => {
   const theme = useTheme();
-  const [stats, setStats] = useState({
+  const stats = {
     totalStudents: 2000,
     activeCourses: 15,
     trainers: 12,
     completionRate: 90,
-  });
+  };
 
-  const [courseData, setCourseData] = useState([
+  const courseData = [
     { name: 'Executive Coaching', value: 450 },
     { name: 'High School Program', value: 350 },
     { name: 'Kids Program', value: 250 },
     { name: 'Corporate Training', value: 300 },
     { name: 'Course Creator', value: 150 },
-  ]);
+  ];
 
-  const [trainerPerformance, setTrainerPerformance] = useState([
+  const trainerPerformance = [
     { name: 'John Doe', courses: 5, students: 120, rating: 4.8 },
     { name: 'Jane Smith', courses: 4, students: 95, rating: 4.9 },
     { name: 'Mike Johnson', courses: 6, students: 150, rating: 4.7 },
     { name: 'Sarah Wilson', courses: 4, students: 110, rating: 4.8 },
-  ]);
+  ];
 
-  const [studentProgress, setStudentProgress] = useState([
+  const studentProgress = [
     { name: 'Week 1', value: 20 },
     { name: 'Week 2', value: 40 },
     { name: 'Week 3', value: 60 },
     { name: 'Week 4', value: 80 },
     { name: 'Week 5', value: 95 },
-  ]);
+  ];
 
-  // New data for tele marketer performance
-  const [teleMarketerData, setTeleMarketerData] = useState([
+  const teleMarketerData = [
     { unit: 'Unit 1', performance: 85 },
     { unit: 'Unit 2', performance: 72 },
     { unit: 'Unit 3', performance: 68 },
     { unit: 'Unit 4', performance: 90 },
-  ]);
+  ];
 
-  // Corporate sales data
-  const [corporateSales, setCorporateSales] = useState({
+  const corporateSales = {
     target: 100,
     current: 75,
-  });
+  };
 
   // Color scheme for performance indicators
   const getColor = (value) => {

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DTI Public Speaking Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .dashboard-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .chart-container {
+            margin: 20px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 4px;
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .chart-title {
+            color: #34495e;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <h1>DTI Public Speaking Dashboard</h1>
+
+        <!-- Lead Source Performance -->
+        <div class="chart-container">
+            <h2 class="chart-title">Lead Source Performance</h2>
+            <canvas id="leadSourceChart"></canvas>
+        </div>
+
+        <!-- Course Performance -->
+        <div class="chart-container">
+            <h2 class="chart-title">Course Performance</h2>
+            <canvas id="coursePerformanceChart"></canvas>
+        </div>
+
+        <!-- Demographics -->
+        <div class="chart-container">
+            <h2 class="chart-title">Demographics</h2>
+            <div class="demographics-grid">
+                <canvas id="ageChart"></canvas>
+                <canvas id="professionChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sample data (replace with real data later)
+        const leadSourceData = {
+            labels: ['TikTok', 'Facebook', 'Website', 'Other'],
+            datasets: [{
+                label: 'Leads',
+                data: [500, 300, 200, 100],
+                backgroundColor: [
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)'
+                ],
+                borderWidth: 1
+            }]
+        };
+
+        const coursePerformanceData = {
+            labels: ['Public Speaking Basics', 'Advanced Presentation', 'Leadership Communication'],
+            datasets: [{
+                label: 'Enrollments',
+                data: [100, 75, 50],
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            }, {
+                label: 'Completion Rate',
+                data: [85, 90, 80],
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        };
+
+        const ageChartData = {
+            labels: ['18-25', '26-35', '36+'],
+            datasets: [{
+                data: [40, 35, 25],
+                backgroundColor: [
+                    '#FF6384',
+                    '#36A2EB',
+                    '#FFCE56'
+                ]
+            }]
+        };
+
+        const professionChartData = {
+            labels: ['Students', 'Professionals', 'Entrepreneurs'],
+            datasets: [{
+                data: [50, 30, 20],
+                backgroundColor: [
+                    '#FF6384',
+                    '#36A2EB',
+                    '#FFCE56'
+                ]
+            }]
+        };
+
+        // Initialize charts
+        const leadSourceCtx = document.getElementById('leadSourceChart').getContext('2d');
+        const coursePerformanceCtx = document.getElementById('coursePerformanceChart').getContext('2d');
+        const ageCtx = document.getElementById('ageChart').getContext('2d');
+        const professionCtx = document.getElementById('professionChart').getContext('2d');
+
+        new Chart(leadSourceCtx, {
+            type: 'bar',
+            data: leadSourceData,
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        new Chart(coursePerformanceCtx, {
+            type: 'line',
+            data: coursePerformanceData,
+            options: {
+                responsive: true
+            }
+        });
+
+        new Chart(ageCtx, {
+            type: 'pie',
+            data: ageChartData,
+            options: {
+                responsive: true
+            }
+        });
+
+        new Chart(professionCtx, {
+            type: 'pie',
+            data: professionChartData,
+            options: {
+                responsive: true
+            }
+        });
+    </script>
+</body>
+</html>

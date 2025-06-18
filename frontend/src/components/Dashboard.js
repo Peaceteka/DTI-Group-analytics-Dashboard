@@ -5,14 +5,11 @@ import {
   Typography,
   Box,
   LinearProgress,
-  CardContent,
-  CardActions,
-  Button,
-  CardMedia,
-  Tooltip,
-  IconButton,
   CircularProgress,
   Paper,
+  CardMedia,
+  IconButton,
+  Tooltip as MuiTooltip,
 } from '@mui/material';
 import {
   LineChart,
@@ -20,11 +17,11 @@ import {
   XAxis,
   YAxis,
   CartesianGrid,
-  Tooltip as RechartsTooltip,
   BarChart,
   Bar,
   PieChart,
   Pie,
+  Tooltip,
 } from 'recharts';
 import { useTheme } from '@mui/material/styles';
 
@@ -179,9 +176,11 @@ const Dashboard = () => {
         {/* Course Distribution Chart */}
         <Grid item xs={12} md={6}>
           <Card sx={{ p: 3, height: '100%' }}>
-            <Typography variant="h5" gutterBottom>
-              Course Enrollment
-            </Typography>
+            <MuiTooltip title="Course Enrollment">
+              <Typography variant="h5" gutterBottom>
+                Course Enrollment
+              </Typography>
+            </MuiTooltip>
             <BarChart width={500} height={300} data={courseData}>
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="name" />
@@ -195,9 +194,11 @@ const Dashboard = () => {
         {/* Tele Marketer Performance Chart */}
         <Grid item xs={12} md={6}>
           <Card sx={{ p: 3, height: '100%' }}>
-            <Typography variant="h5" gutterBottom>
-              Tele Marketer Performance
-            </Typography>
+            <MuiTooltip title="Tele Marketer Performance">
+              <Typography variant="h5" gutterBottom>
+                Tele Marketer Performance
+              </Typography>
+            </MuiTooltip>
             <BarChart width={500} height={300} data={teleMarketerData}>
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="unit" />

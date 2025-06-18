@@ -1,8 +1,18 @@
 import React from 'react';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import { AppBar, Toolbar, Typography, Box } from '@mui/material';
+import { 
+  AppBar, 
+  Toolbar, 
+  Typography, 
+  Box,
+  Grid 
+} from '@mui/material';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Dashboard from './components/Dashboard';
+import PaymentManagement from './components/PaymentManagement';
+import Navigation from './components/Navigation';
+import UnitsUpload from './components/UnitsManagement/UnitsUpload';
 
 const theme = createTheme({
   palette: {
@@ -48,6 +58,15 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
+      <Router>
+        <Navigation />
+        <Routes>
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/payment-management" element={<PaymentManagement />} />
+          <Route path="/units-management" element={<UnitsUpload />} />
+          <Route path="/" element={<Dashboard />} />
+        </Routes>
+      </Router>
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static" color="primary">
           <Toolbar>

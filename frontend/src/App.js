@@ -10,7 +10,7 @@ import {
 } from '@mui/material';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Dashboard from './components/Dashboard';
-import PaymentManagement from './components/PaymentManagement';
+import Finance from './components/Finance/Finance';
 import Navigation from './components/Navigation';
 import UnitsUpload from './components/UnitsManagement/UnitsUpload';
 
@@ -75,7 +75,7 @@ function App() {
               </Box>
             </Box>
           } />
-          <Route path="/payment-management" element={<PaymentManagement />} />
+          <Route path="/finance" element={<Finance />} />
           <Route path="/units-management" element={<UnitsUpload />} />
           <Route path="/" element={<Dashboard />} />
         </Routes>

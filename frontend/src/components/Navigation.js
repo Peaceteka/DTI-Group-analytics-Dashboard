@@ -39,11 +39,11 @@ const Navigation = () => {
           </Button>
           <Button
             component={RouterLink}
-            to="/payment-management"
+            to="/finance"
             color="inherit"
             variant="text"
           >
-            Payment Management
+            Finance
           </Button>
         </Box>
       </Toolbar>

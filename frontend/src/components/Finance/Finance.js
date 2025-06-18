@@ -12,43 +12,15 @@ import {
   Grid,
   Chip,
 } from '@mui/material';
-import { units } from '../../data/unitsData';
+import { useClientContext } from '../../context/ClientContext';
 
 const Finance = () => {
-  const [clients, setClients] = useState([]);
+  const { clients, getClientStats } = useClientContext();
+  const stats = getClientStats();
 
-  // Simulating fetching clients data from units management
-  useEffect(() => {
-    // In a real app, this would fetch from a backend API
-    const demoClients = [
-      {
-        id: 1,
-        clientName: 'John Doe',
-        phoneNumber: '+254723456789',
-        amountPaid: 5000,
-        paymentStatus: 'Paid',
-        teamMember: 'Brian',
-        registrationDate: '2025-06-18',
-        unit: 'Unit 1'
-      },
-      {
-        id: 2,
-        clientName: 'Jane Smith',
-        phoneNumber: '+254712345678',
-        amountPaid: 3000,
-        paymentStatus: 'Paid',
-        teamMember: 'Rose',
-        registrationDate: '2025-06-18',
-        unit: 'Unit 1'
-      },
-      // Add more demo clients as needed
-    ];
-    setClients(demoClients);
-  }, []);
-
-  // Calculate total amounts
-  const totalPaid = clients.reduce((sum, client) => sum + (client.amountPaid || 0), 0);
-  const totalCommission = totalPaid * 0.1; // 10% commission
+  // Calculate total amounts using context
+  const totalPaid = stats.totalPaid;
+  const totalCommission = stats.totalCommission;
 
   return (
     <Box sx={{ p: 3 }}>
@@ -103,18 +75,18 @@ const Finance = () => {
 
       <Typography variant="h6" gutterBottom sx={{ mt: 4 }}>Team Member Performance</Typography>
       <Grid container spacing={3}>
-        {units.reduce((acc, unit) => [...acc, ...unit.members], []).map((member) => (
+        {Object.entries(stats.teamMemberStats).map(([member, stats]) => (
           <Grid item xs={12} sm={6} md={3} key={member}>
             <Paper sx={{ p: 2, textAlign: 'center' }}>
               <Typography variant="subtitle1" gutterBottom>{member}</Typography>
               <Typography variant="body1">
-                Total Commission: KES {clients
-                  .filter(c => c.teamMember === member)
-                  .reduce((sum, c) => sum + (c.amountPaid * 0.1), 0)
-                  .toLocaleString()}
+                Total Commission: KES {stats.totalCommission.toLocaleString()}
               </Typography>
               <Typography variant="body1">
-                Clients: {clients.filter(c => c.teamMember === member).length}
+                Clients: {stats.clients}
+              </Typography>
+              <Typography variant="body1">
+                Total Amount: KES {stats.totalAmount.toLocaleString()}
               </Typography>
             </Paper>
           </Grid>

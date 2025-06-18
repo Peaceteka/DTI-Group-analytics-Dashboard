@@ -5,19 +5,20 @@ import {
   Typography,
   Paper,
   Grid,
+  TextField,
   Button,
   Dialog,
   DialogTitle,
   DialogContent,
   DialogActions,
 } from '@mui/material';
-import TextField from '@mui/material/TextField';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import { useNavigate } from 'react-router-dom';
 import ClientForm from './ClientForm';
+import { useClientContext } from '../../context/ClientContext';
 
 const UnitsUpload = () => {
   const [selectedUnit, setSelectedUnit] = useState(null);
@@ -29,19 +30,23 @@ const UnitsUpload = () => {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
+  const { registerClient } = useClientContext();
+
   const handleClientSubmit = (clientData) => {
-    setClients((prev) => [...prev, {
+    const registeredClient = registerClient({
       ...clientData,
-      id: Date.now(),
       registeredBy: selectedTeamMember || selectedUnit?.manager,
       unit: selectedUnit?.name,
-      teamMember: selectedTeamMember,
-      registrationDate: new Date().toISOString().split('T')[0]
-    }]);
+      teamMember: selectedTeamMember
+    });
+    setClients(prev => [...prev, registeredClient]);
   };
 
+  const { updatePayment } = useClientContext();
+
   const handlePaymentUpdate = (clientId, amount) => {
-    setClients((prev) => prev.map(client => 
+    updatePayment(clientId, amount);
+    setClients(prev => prev.map(client => 
       client.id === clientId ? {
         ...client,
         amountPaid: amount,

@@ -13,6 +13,7 @@ import Dashboard from './components/Dashboard';
 import Finance from './components/Finance/Finance';
 import Navigation from './components/Navigation';
 import UnitsUpload from './components/UnitsManagement/UnitsUpload';
+import { ClientProvider } from './context/ClientContext';
 
 const theme = createTheme({
   palette: {
@@ -59,26 +60,28 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Router>
-        <Navigation />
-        <Routes>
-          <Route path="/dashboard" element={
-            <Box sx={{ flexGrow: 1 }}>
-              <AppBar position="static" color="primary">
-                <Toolbar>
-                  <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                    DTI Public Speaking Dashboard
-                  </Typography>
-                </Toolbar>
-              </AppBar>
-              <Box sx={{ mt: 8 }}>
-                <Dashboard />
+        <ClientProvider>
+          <Navigation />
+          <Routes>
+            <Route path="/dashboard" element={
+              <Box sx={{ flexGrow: 1 }}>
+                <AppBar position="static" color="primary">
+                  <Toolbar>
+                    <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                      DTI Public Speaking Dashboard
+                    </Typography>
+                  </Toolbar>
+                </AppBar>
+                <Box sx={{ mt: 8 }}>
+                  <Dashboard />
+                </Box>
               </Box>
-            </Box>
-          } />
-          <Route path="/finance" element={<Finance />} />
-          <Route path="/units-management" element={<UnitsUpload />} />
-          <Route path="/" element={<Dashboard />} />
-        </Routes>
+            } />
+            <Route path="/finance" element={<Finance />} />
+            <Route path="/units-management" element={<UnitsUpload />} />
+            <Route path="/" element={<Dashboard />} />
+          </Routes>
+        </ClientProvider>
       </Router>
     </ThemeProvider>
   );

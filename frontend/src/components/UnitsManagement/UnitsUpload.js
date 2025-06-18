@@ -5,9 +5,13 @@ import {
   Typography,
   Paper,
   Grid,
-  TextField,
   Button,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
 } from '@mui/material';
+import TextField from '@mui/material/TextField';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
@@ -18,7 +22,11 @@ import ClientForm from './ClientForm';
 const UnitsUpload = () => {
   const [selectedUnit, setSelectedUnit] = useState(null);
   const [selectedTeamMember, setSelectedTeamMember] = useState(null);
+  const [authDialogOpen, setAuthDialogOpen] = useState(false);
+  const [pendingTeamMember, setPendingTeamMember] = useState(null);
   const [clients, setClients] = useState([]);
+  const [pin, setPin] = useState('');
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
   const handleClientSubmit = (clientData) => {
@@ -70,12 +78,63 @@ const UnitsUpload = () => {
           <Typography variant="h6" gutterBottom>
             {selectedUnit.name} Team Members:
           </Typography>
+          <Dialog
+            open={authDialogOpen}
+            onClose={() => {
+              setAuthDialogOpen(false);
+              setPendingTeamMember(null);
+            }}
+          >
+            <DialogTitle>Authenticate - {pendingTeamMember}</DialogTitle>
+            <DialogContent>
+              <TextField
+                autoFocus
+                margin="dense"
+                label="PIN"
+                type="password"
+                fullWidth
+                variant="outlined"
+                value={pin}
+                onChange={(e) => setPin(e.target.value)}
+                error={!!error}
+                helperText={error}
+              />
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={() => {
+                setAuthDialogOpen(false);
+                setPendingTeamMember(null);
+              }}>
+                Cancel
+              </Button>
+              <Button
+                onClick={() => {
+                  if (pin === '1234') { // In a real app, this would check against the actual PIN
+                    setSelectedTeamMember(pendingTeamMember);
+                    setAuthDialogOpen(false);
+                    setError('');
+                    setPin('');
+                    setPendingTeamMember(null);
+                  } else {
+                    setError('Invalid PIN');
+                    setPin('');
+                  }
+                }}
+                color="primary"
+              >
+                Authenticate
+              </Button>
+            </DialogActions>
+          </Dialog>
           <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap', mb: 4 }}>
             {selectedUnit.members.map(member => (
               <Button
                 key={member}
                 variant={selectedTeamMember === member ? 'contained' : 'outlined'}
-                onClick={() => setSelectedTeamMember(member)}
+                onClick={() => {
+                  setPendingTeamMember(member);
+                  setAuthDialogOpen(true);
+                }}
                 sx={{
                   flex: 1,
                   minWidth: 150,
@@ -92,6 +151,7 @@ const UnitsUpload = () => {
             onSubmit={handleClientSubmit}
             unitName={selectedUnit.name}
             teamMember={selectedTeamMember}
+            disabled={!selectedTeamMember}
           />
 
           <Box sx={{ mt: 4 }}>

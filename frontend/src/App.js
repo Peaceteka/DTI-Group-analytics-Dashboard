@@ -6,7 +6,7 @@ import {
   Toolbar, 
   Typography, 
   Box,
-  Grid 
+  Grid,
 } from '@mui/material';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Dashboard from './components/Dashboard';
@@ -61,24 +61,25 @@ function App() {
       <Router>
         <Navigation />
         <Routes>
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/dashboard" element={
+            <Box sx={{ flexGrow: 1 }}>
+              <AppBar position="static" color="primary">
+                <Toolbar>
+                  <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                    DTI Public Speaking Dashboard
+                  </Typography>
+                </Toolbar>
+              </AppBar>
+              <Box sx={{ mt: 8 }}>
+                <Dashboard />
+              </Box>
+            </Box>
+          } />
           <Route path="/payment-management" element={<PaymentManagement />} />
           <Route path="/units-management" element={<UnitsUpload />} />
           <Route path="/" element={<Dashboard />} />
         </Routes>
       </Router>
-      <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static" color="primary">
-          <Toolbar>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              DTI Public Speaking Dashboard
-            </Typography>
-          </Toolbar>
-        </AppBar>
-        <Box sx={{ mt: 8 }}>
-          <Dashboard />
-        </Box>
-      </Box>
     </ThemeProvider>
   );
 }

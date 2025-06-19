@@ -64,17 +64,8 @@ function App() {
           <Navigation />
           <Routes>
             <Route path="/dashboard" element={
-              <Box sx={{ flexGrow: 1 }}>
-                <AppBar position="static" color="primary">
-                  <Toolbar>
-                    <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                      DTI Public Speaking Dashboard
-                    </Typography>
-                  </Toolbar>
-                </AppBar>
-                <Box sx={{ mt: 8 }}>
-                  <Dashboard />
-                </Box>
+              <Box sx={{ mt: 8 }}>
+                <Dashboard />
               </Box>
             } />
             <Route path="/finance" element={<Finance />} />

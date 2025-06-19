@@ -97,7 +97,7 @@ const Dashboard = () => {
               value={stats.completionRate}
               sx={{ 
                 mt: 2,
-                bgcolor: getColor(stats.completionRate)
+                bgcolor: '#F44336'
               }}
             />
           </Card>
@@ -141,7 +141,7 @@ const Dashboard = () => {
               value={corporateSales.current}
               sx={{ 
                 mt: 2,
-                bgcolor: getColor(corporateSales.current)
+                bgcolor: '#F44336'
               }}
             />
           </Card>
@@ -186,7 +186,7 @@ const Dashboard = () => {
               <XAxis dataKey="name" />
               <YAxis />
               <Tooltip />
-              <Bar dataKey="value" fill="#2196F3" />
+              <Bar dataKey="value" fill="#F44336" />
             </BarChart>
           </Card>
         </Grid>
@@ -206,7 +206,7 @@ const Dashboard = () => {
               <Tooltip />
               <Bar 
                 dataKey="performance" 
-                fill="#2196F3"
+                fill="#F44336"
                 style={{ fill: (props) => getColor(props.value) }}
               />
             </BarChart>

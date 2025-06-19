@@ -15,7 +15,7 @@ const Navigation = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   return (
-    <AppBar position="static" color="primary">
+    <AppBar position="static" color="error">
       <Toolbar>
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           DTI Dashboard

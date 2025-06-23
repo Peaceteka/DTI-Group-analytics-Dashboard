@@ -3,8 +3,6 @@ import { units } from '../../data/unitsData';
 import {
   Box,
   Typography,
-  Paper,
-  Grid,
   TextField,
   Button,
   Dialog,
@@ -16,7 +14,6 @@ import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
-import { useNavigate } from 'react-router-dom';
 import ClientForm from './ClientForm';
 import { useClientContext } from '../../context/ClientContext';
 
@@ -28,7 +25,7 @@ const UnitsUpload = () => {
   const [clients, setClients] = useState([]);
   const [pin, setPin] = useState('');
   const [error, setError] = useState('');
-  const navigate = useNavigate();
+
 
   const { registerClient } = useClientContext();
 

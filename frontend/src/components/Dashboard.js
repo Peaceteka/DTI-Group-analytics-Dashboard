@@ -7,8 +7,6 @@ import {
   LinearProgress,
   CircularProgress,
   Paper,
-  CardMedia,
-  IconButton,
   Tooltip as MuiTooltip,
 } from '@mui/material';
 import {

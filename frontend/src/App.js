@@ -1,13 +1,7 @@
 import React from 'react';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import { 
-  AppBar, 
-  Toolbar, 
-  Typography, 
-  Box,
-  Grid,
-} from '@mui/material';
+import { Box } from '@mui/material';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Dashboard from './components/Dashboard';
 import Finance from './components/Finance/Finance';

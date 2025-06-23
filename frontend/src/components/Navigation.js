@@ -6,13 +6,12 @@ import {
   Button,
   Box,
   useTheme,
-  useMediaQuery,
 } from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom';
 
 const Navigation = () => {
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  // const theme = useTheme();
+
 
   return (
     <AppBar position="static" color="error">

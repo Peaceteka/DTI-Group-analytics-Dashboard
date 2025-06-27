@@ -18,6 +18,7 @@ const ClientForm = ({ onSubmit, unitName, teamMember }) => {
     amountPaid: '',
     paymentStatus: 'Pending',
     sessionType: 'Physical Class',
+    mpesaCode: '',
   });
 
   const handleChange = (e) => {
@@ -99,6 +100,15 @@ const ClientForm = ({ onSubmit, unitName, teamMember }) => {
             ))}
           </Select>
         </FormControl>
+        <TextField
+          fullWidth
+          label="MPESA Code"
+          name="mpesaCode"
+          value={formData.mpesaCode}
+          onChange={handleChange}
+          placeholder="Enter MPESA transaction code"
+          helperText="Enter MPESA code for payment verification"
+        />
         <Button
           type="submit"
           variant="contained"

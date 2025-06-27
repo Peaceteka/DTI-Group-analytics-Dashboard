@@ -34,7 +34,8 @@ const UnitsUpload = () => {
       ...clientData,
       registeredBy: selectedTeamMember || selectedUnit?.manager,
       unit: selectedUnit?.name,
-      teamMember: selectedTeamMember
+      teamMember: selectedTeamMember,
+      mpesaCode: clientData.mpesaCode
     });
     setClients(prev => [...prev, registeredClient]);
   };
@@ -188,11 +189,17 @@ const UnitsUpload = () => {
                 <Typography variant="body2">
                   Team Member: {client.teamMember || client.registeredBy}
                 </Typography>
+                {client.mpesaCode && (
+                  <Typography variant="body2">
+                    MPESA Code: {client.mpesaCode}
+                  </Typography>
+                )}
                 <Box sx={{ mt: 1 }}>
                   <TextField
                     type="number"
                     label="Update Payment"
-                    onChange={(e) => handlePaymentUpdate(client.id, e.target.value)}
+                    value={client.amountPaid}
+                    onChange={(e) => handlePaymentUpdate(client.id, Number(e.target.value))}
                     sx={{ maxWidth: 200 }}
                   />
                 </Box>

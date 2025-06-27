@@ -52,6 +52,7 @@ const Finance = () => {
               <TableCell>Team Member</TableCell>
               <TableCell>Registration Date</TableCell>
               <TableCell>Unit</TableCell>
+              <TableCell>MPESA Code</TableCell>
               <TableCell>Commission</TableCell>
             </TableRow>
           </TableHead>
@@ -66,6 +67,7 @@ const Finance = () => {
                 </TableCell>
                 <TableCell>{client.registrationDate}</TableCell>
                 <TableCell>{client.unit}</TableCell>
+                <TableCell>{client.mpesaCode || 'N/A'}</TableCell>
                 <TableCell>KES {(client.amountPaid * 0.1).toLocaleString()}</TableCell>
               </TableRow>
             ))}

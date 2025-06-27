@@ -19,6 +19,8 @@ const ClientForm = ({ onSubmit, unitName, teamMember }) => {
     paymentStatus: 'Pending',
     sessionType: 'Physical Class',
     mpesaCode: '',
+    totalAmountDue: '',
+    installmentPlan: '1'
   });
 
   const handleChange = (e) => {
@@ -65,13 +67,38 @@ const ClientForm = ({ onSubmit, unitName, teamMember }) => {
         />
         <TextField
           fullWidth
-          label="Amount Paid"
+          label="Initial Payment"
           name="amountPaid"
           value={formData.amountPaid}
           onChange={handleChange}
           required
           type="number"
         />
+        <TextField
+          fullWidth
+          label="Total Amount Due"
+          name="totalAmountDue"
+          value={formData.totalAmountDue}
+          onChange={handleChange}
+          required
+          type="number"
+          helperText="Total amount the client needs to pay"
+        />
+        <FormControl fullWidth>
+          <InputLabel>Installment Plan</InputLabel>
+          <Select
+            name="installmentPlan"
+            value={formData.installmentPlan}
+            onChange={handleChange}
+            label="Installment Plan"
+          >
+            <MenuItem value="1">Single Payment</MenuItem>
+            <MenuItem value="2">2 Installments</MenuItem>
+            <MenuItem value="3">3 Installments</MenuItem>
+            <MenuItem value="4">4 Installments</MenuItem>
+            <MenuItem value="5">5 Installments</MenuItem>
+          </Select>
+        </FormControl>
         <FormControl fullWidth>
           <InputLabel>Payment Status</InputLabel>
           <Select

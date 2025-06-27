@@ -9,7 +9,13 @@ export const ClientProvider = ({ children }) => {
     const newClient = {
       ...clientData,
       id: Date.now(),
-      registrationDate: new Date().toISOString().split('T')[0]
+      registrationDate: new Date().toISOString().split('T')[0],
+      totalAmountDue: Number(clientData.totalAmountDue) || 0,
+      installmentPlan: Number(clientData.installmentPlan) || 1,
+      financeVerified: false,
+      paymentHistory: [],
+      balance: Number(clientData.totalAmountDue) || 0,
+      paymentStatus: 'Pending'
     };
     setClients(prev => [...prev, newClient]);
     return newClient;
@@ -19,14 +25,33 @@ export const ClientProvider = ({ children }) => {
     setClients(prev => prev.map(client => 
       client.id === clientId ? {
         ...client,
-        amountPaid: amount,
-        paymentStatus: amount > 0 ? 'Paid' : 'Pending'
+        amountPaid: Number(client.amountPaid || 0) + Number(amount),
+        paymentHistory: [...(client.paymentHistory || []), {
+          amount: Number(amount),
+          date: new Date().toISOString().split('T')[0],
+          paymentType: 'Installment'
+        }],
+        balance: Number(client.totalAmountDue) - (Number(client.amountPaid || 0) + Number(amount)),
+        paymentStatus: Number(client.amountPaid || 0) + Number(amount) >= Number(client.totalAmountDue) 
+          ? 'Paid' 
+          : Number(client.amountPaid || 0) + Number(amount) === 0 
+            ? 'Pending' 
+            : 'Partial'
+      } : client
+    ));
+  };
+
+  const verifyPayment = (clientId) => {
+    setClients(prev => prev.map(client => 
+      client.id === clientId ? {
+        ...client,
+        financeVerified: true
       } : client
     ));
   };
 
   const getClientStats = () => {
-    const totalPaid = clients.reduce((sum, client) => sum + (client.amountPaid || 0), 0);
+    const totalPaid = clients.reduce((sum, client) => sum + (Number(client.amountPaid) || 0), 0);
     const totalCommission = totalPaid * 0.1;
     const teamMemberStats = {};
 
@@ -39,9 +64,9 @@ export const ClientProvider = ({ children }) => {
           totalAmount: 0
         };
       }
-      teamMemberStats[member].totalCommission += (client.amountPaid || 0) * 0.1;
+      teamMemberStats[member].totalCommission += (Number(client.amountPaid) || 0) * 0.1;
       teamMemberStats[member].clients += 1;
-      teamMemberStats[member].totalAmount += (client.amountPaid || 0);
+      teamMemberStats[member].totalAmount += (Number(client.amountPaid) || 0);
     });
 
     return {
@@ -56,6 +81,7 @@ export const ClientProvider = ({ children }) => {
       clients,
       registerClient,
       updatePayment,
+      verifyPayment,
       getClientStats
     }}>
       {children}
@@ -70,3 +96,5 @@ export const useClientContext = () => {
   }
   return context;
 };
+
+export const ClientContextProvider = ClientProvider;
